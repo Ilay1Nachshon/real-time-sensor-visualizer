@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import ConnectionStatus from "@/components/ConnectionStatus";
-import DataDisplay from "@/components/DataDisplay";
-import DataChart from "@/components/DataChart";
-import DirectionIndicator from "@/components/DirectionIndicator";
-import { Button } from "@/components/ui/button";
+import ConnectionStatus from "../components/ConnectionStatus";
+import DataDisplay from "../components/DataDisplay";
+import DataChart from "../components/DataChart";
+import DirectionIndicator from "../components/DirectionIndicator";
+import { Button } from "../components/ui/button";
 
 interface DataPoint {
   timestamp: number;
