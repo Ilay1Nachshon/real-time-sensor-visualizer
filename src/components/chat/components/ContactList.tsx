@@ -50,16 +50,19 @@ export function ContactList({ selectedChat, onSelectChat }: ContactListProps) {
               <SidebarMenuButton
                 onClick={() => onSelectChat(contact.id)}
                 className={cn(
-                  "flex items-start gap-3 p-3",
+                  "flex items-center gap-4 p-4", // Increased padding
+                  "min-h-[4.5rem]", // 1.5x height
                   selectedChat === contact.id &&
                     "bg-sidebar-accent text-sidebar-accent-foreground"
                 )}
               >
-                <img
-                  src={contact.image}
-                  alt={contact.name}
-                  className="h-12 w-12 rounded-full"
-                />
+                <div className="flex-shrink-0">
+                  <img
+                    src={contact.image}
+                    alt={contact.name}
+                    className="h-16 w-16 rounded-full object-cover" // Increased size and proper object fitting
+                  />
+                </div>
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold">{contact.name}</span>
