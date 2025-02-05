@@ -8,6 +8,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
+import { User } from "lucide-react"
 
 interface Contact {
   id: string
@@ -50,18 +51,25 @@ export function ContactList({ selectedChat, onSelectChat }: ContactListProps) {
               <SidebarMenuButton
                 onClick={() => onSelectChat(contact.id)}
                 className={cn(
-                  "flex items-center gap-4 p-4", // Increased padding
-                  "min-h-[4.5rem]", // 1.5x height
+                  "flex items-center gap-4 p-4",
+                  "min-h-[4.5rem]",
+                  "w-[24rem]", // 1.5x width expansion
                   selectedChat === contact.id &&
                     "bg-sidebar-accent text-sidebar-accent-foreground"
                 )}
               >
                 <div className="flex-shrink-0">
-                  <img
-                    src={contact.image}
-                    alt={contact.name}
-                    className="h-16 w-16 rounded-full object-cover" // Increased size and proper object fitting
-                  />
+                  {contact.image === "/placeholder.svg" ? (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
+                      <User className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                  ) : (
+                    <img
+                      src={contact.image}
+                      alt={contact.name}
+                      className="h-16 w-16 rounded-full object-cover"
+                    />
+                  )}
                 </div>
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center justify-between">

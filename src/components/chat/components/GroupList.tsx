@@ -8,6 +8,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
+import { Users } from "lucide-react"
 
 interface Group {
   id: string
@@ -50,18 +51,25 @@ export function GroupList({ selectedChat, onSelectChat }: GroupListProps) {
               <SidebarMenuButton
                 onClick={() => onSelectChat(group.id)}
                 className={cn(
-                  "flex items-center gap-4 p-4", // Increased padding
-                  "min-h-[4.5rem]", // 1.5x height
+                  "flex items-center gap-4 p-4",
+                  "min-h-[4.5rem]",
+                  "w-[24rem]", // 1.5x width expansion
                   selectedChat === group.id &&
                     "bg-sidebar-accent text-sidebar-accent-foreground"
                 )}
               >
                 <div className="flex-shrink-0">
-                  <img
-                    src={group.image}
-                    alt={group.name}
-                    className="h-16 w-16 rounded-full object-cover" // Increased size and proper object fitting
-                  />
+                  {group.image === "/placeholder.svg" ? (
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-secondary">
+                      <Users className="h-8 w-8 text-muted-foreground" />
+                    </div>
+                  ) : (
+                    <img
+                      src={group.image}
+                      alt={group.name}
+                      className="h-16 w-16 rounded-full object-cover"
+                    />
+                  )}
                 </div>
                 <div className="flex-1 overflow-hidden">
                   <div className="flex items-center justify-between">
