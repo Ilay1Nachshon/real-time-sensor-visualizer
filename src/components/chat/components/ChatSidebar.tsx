@@ -1,23 +1,16 @@
 
 import { useState } from "react"
-import { Settings, Search } from "lucide-react"
+import { Settings } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarGroupContent,
-  SidebarMenu,
-  SidebarMenuItem,
-  SidebarMenuButton,
 } from "@/components/ui/sidebar"
-import { cn } from "@/lib/utils"
 import { ContactList } from "./ContactList"
 import { GroupList } from "./GroupList"
 import { SettingsPanel } from "./SettingsPanel"
+import { SearchUsers } from "./SearchUsers"
 
 interface ChatSidebarProps {
   selectedChat: string | null
@@ -26,6 +19,11 @@ interface ChatSidebarProps {
 
 export function ChatSidebar({ selectedChat, onSelectChat }: ChatSidebarProps) {
   const [showSettings, setShowSettings] = useState(false)
+
+  const handleUserFound = (user: any) => {
+    // TODO: Implement when backend is integrated
+    console.log("User found:", user)
+  }
 
   return (
     <Sidebar>
@@ -40,17 +38,11 @@ export function ChatSidebar({ selectedChat, onSelectChat }: ChatSidebarProps) {
             <Settings className="h-5 w-5" />
           </Button>
         </div>
-        <div className="mt-4">
-          <Input
-            type="search"
-            placeholder="Search chats..."
-            className="w-full"
-          />
-        </div>
       </SidebarHeader>
       <SidebarContent>
         {!showSettings ? (
           <>
+            <SearchUsers onUserFound={handleUserFound} />
             <ContactList selectedChat={selectedChat} onSelectChat={onSelectChat} />
             <GroupList selectedChat={selectedChat} onSelectChat={onSelectChat} />
           </>
