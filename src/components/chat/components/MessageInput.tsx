@@ -3,6 +3,7 @@ import { Send } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
+import { toast } from "sonner"
 import axiosInstance from "@/lib/axios"
 
 interface MessageInputProps {
@@ -19,7 +20,6 @@ export function MessageInput({ selectedChat, onMessageSent }: MessageInputProps)
 
     setIsSending(true)
     try {
-      // TODO: Replace with actual API endpoint when backend is integrated
       await axiosInstance.post('/messages', {
         chatId: selectedChat,
         message: message.trim(),

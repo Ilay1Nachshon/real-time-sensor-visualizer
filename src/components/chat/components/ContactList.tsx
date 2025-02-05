@@ -8,9 +8,7 @@ import {
   SidebarMenuButton,
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
-import { Plus, Search, User } from "lucide-react"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import { User } from "lucide-react"
 import { useState } from "react"
 
 interface Contact {
@@ -28,49 +26,10 @@ interface ContactListProps {
 
 export function ContactList({ selectedChat, onSelectChat }: ContactListProps) {
   const [contacts, setContacts] = useState<Contact[]>([])
-  const [searchQuery, setSearchQuery] = useState("")
-  const [isSearching, setIsSearching] = useState(false)
-
-  const handleSearch = async () => {
-    if (!searchQuery.trim()) return
-    setIsSearching(true)
-    try {
-      // TODO: Implement actual API call to fetch users
-      // This is a placeholder for the actual implementation
-      console.log("Searching for users with query:", searchQuery)
-    } catch (error) {
-      console.error("Error searching for users:", error)
-    } finally {
-      setIsSearching(false)
-    }
-  }
 
   return (
     <SidebarGroup className="flex-1">
       <SidebarGroupLabel>Contacts</SidebarGroupLabel>
-      <div className="mb-4 px-4">
-        <div className="flex gap-2">
-          <Input
-            type="search"
-            placeholder="Search users..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                handleSearch()
-              }
-            }}
-          />
-          <Button
-            size="icon"
-            variant="ghost"
-            onClick={handleSearch}
-            disabled={isSearching}
-          >
-            <Search className="h-4 w-4" />
-          </Button>
-        </div>
-      </div>
       <SidebarGroupContent>
         <SidebarMenu>
           {contacts.map((contact) => (
