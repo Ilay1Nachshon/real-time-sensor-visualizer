@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sidebar"
 import { cn } from "@/lib/utils"
 import { Users } from "lucide-react"
+import { useState } from "react"
 
 interface Group {
   id: string
@@ -18,29 +19,14 @@ interface Group {
   image: string
 }
 
-const groups: Group[] = [
-  {
-    id: "1",
-    name: "Project Team",
-    lastMessage: "Meeting at 2 PM",
-    timestamp: "12:45 PM",
-    image: "/placeholder.svg",
-  },
-  {
-    id: "2",
-    name: "Family Group",
-    lastMessage: "Don't forget mom's birthday!",
-    timestamp: "Yesterday",
-    image: "/placeholder.svg",
-  },
-]
-
 interface GroupListProps {
   selectedChat: string | null
   onSelectChat: (id: string) => void
 }
 
 export function GroupList({ selectedChat, onSelectChat }: GroupListProps) {
+  const [groups, setGroups] = useState<Group[]>([])
+
   return (
     <SidebarGroup>
       <SidebarGroupLabel>Groups</SidebarGroupLabel>
@@ -53,7 +39,7 @@ export function GroupList({ selectedChat, onSelectChat }: GroupListProps) {
                 className={cn(
                   "flex items-center gap-4 p-4",
                   "min-h-[4.5rem]",
-                  "w-[24rem]", // 1.5x width expansion
+                  "w-[24rem]",
                   selectedChat === group.id &&
                     "bg-sidebar-accent text-sidebar-accent-foreground"
                 )}
