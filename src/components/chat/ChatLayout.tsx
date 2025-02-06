@@ -1,8 +1,7 @@
-
-import { useState } from "react"
-import { SidebarProvider } from "@/components/ui/sidebar"
-import { ChatSidebar } from "./components/ChatSidebar"
-import { ChatArea } from "./components/ChatArea"
+import { useState } from "react";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { ChatSidebar } from "./components/ChatSidebar";
+import { ChatArea } from "./components/ChatArea";
 
 const contacts = [
   {
@@ -19,7 +18,7 @@ const contacts = [
     timestamp: "Yesterday",
     image: "/placeholder.svg",
   },
-]
+];
 
 const groups = [
   {
@@ -36,10 +35,10 @@ const groups = [
     timestamp: "Yesterday",
     image: "/placeholder.svg",
   },
-]
+];
 
 export function ChatLayout() {
-  const [selectedChat, setSelectedChat] = useState<string | null>(null)
+  const [selectedChat, setSelectedChat] = useState<string | null>(null);
 
   return (
     <SidebarProvider defaultOpen>
@@ -57,5 +56,5 @@ export function ChatLayout() {
         </main>
       </div>
     </SidebarProvider>
-  )
+  );
 }
